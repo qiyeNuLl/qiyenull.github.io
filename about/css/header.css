@@ -1,0 +1,54 @@
+.header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.header .header_left{
+	flex-direction: column;
+	line-height: 35px;
+	color: white;
+}
+
+.logo_text {
+	font-family: "PingFang SC";
+	font-size: 40px;
+	fill: none;
+	stroke: url(#geekColor);
+	stroke-width: 1;
+	stroke-dasharray: 10 800;
+	stroke-dashoffset: 10;
+	animation: 10s linear 0s drawing infinite;
+}
+.logo_text_1 {
+	font-family: "blackadder itc";
+	font-size: 22px;
+	fill: none;
+	stroke: url(#geekColor_1);
+	stroke-width: 2;
+	stroke-dasharray: 10 800;
+	stroke-dashoffset: 10;
+	animation: 10s linear 0s drawing infinite;
+}
+@keyframes drawing {
+	to {
+		stroke-dasharray: 800;
+		stroke-dashoffset: 0;
+	}
+}
+.header .header_center{
+					
+}
+.header .header_right{
+	flex-direction: column;
+}
+.header a{
+	font-size: 20px;
+	color: white;
+	text-decoration: none;
+	margin-right: 10px;
+}
+.header a:hover{
+	color: aqua;
+}
