@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Hello World - qiyeNuLl&#39;s blog</title>
+  <title>DHCP和FTP服务器的配置与管理 - qiyeNuLl&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="DHCP和FTP服务器的配置与管理">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-18 05:18" pubdate>
-        September 18, 2021 am
+      <time datetime="2021-09-21 16:52" pubdate>
+        September 21, 2021 pm
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      75 字
+      31 字
     </span>
   
 
@@ -225,28 +225,41 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">DHCP和FTP服务器的配置与管理</h1>
             
             <div class="markdown-body">
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+              <h1 id="DHCP和FTP服务器的配置与管理"><a href="#DHCP和FTP服务器的配置与管理" class="headerlink" title="DHCP和FTP服务器的配置与管理"></a>DHCP和FTP服务器的配置与管理</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
+</font>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p><font color=#999AAA >两台虚拟机，1台Windows 2008，1台Windows 7，网卡均设置成VMnet1</font></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h1 id="一、DHCP服务器搭建"><a href="#一、DHCP服务器搭建" class="headerlink" title="一、DHCP服务器搭建"></a>一、DHCP服务器搭建</h1><p>打开服务器管理器，在角色中创建新角色，选择dhcp服务器<br><img src="https://img-blog.csdnimg.cn/92b065dc6a004462b0ce3e449979a924.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="dhcp服务"><br>Ipv4父域随便来，这里是（qiyeserver.com）<br>首选NDS服务器ipv4地址为：192.168.31.21（要与本地ipv4地址同一网段，但不要一样，会有ip冲突）</p>
+<p>Ipv4 wins设置为无</p>
+<p>dhcp作用域:192.168.31.100-192.168.31.200<br>默认网关为：192.168.31.2<br>最后配置如下：<br><img src="https://img-blog.csdnimg.cn/8656f885c5f64642aabac3a8148e1f04.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="dhcp配置"><br>安装就行<br><img src="https://img-blog.csdnimg.cn/b506aefcb10048dd87fd264214c936a0.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="作用域"><br>打开win7，更新ip配置，重新连接网络</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell">ipconfig /release       //清空ip配置<br>ipconfig /renew         //重新获取IP配置<br></code></pre></td></tr></table></figure>
+
+<p>查看ip，命令：ipconfig<br><img src="https://img-blog.csdnimg.cn/09489f63ade249a8859fd98b12e0f9b8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="win7本地网络配置查询"><br>可以发现，ip地址为dhcp池地址，网关也定向过来了，dns后缀也为qiyeserver.com</p>
+<h1 id="二、FTP服务器搭建"><a href="#二、FTP服务器搭建" class="headerlink" title="二、FTP服务器搭建"></a>二、FTP服务器搭建</h1><p>先关防火墙<br>打开服务管理器，点击添加角色<br><img src="https://img-blog.csdnimg.cn/62e7ab19f6b64ff9af619e149a83f121.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="服务管理器"><br>选择web服务器（IIS），然后下一步<br><img src="https://img-blog.csdnimg.cn/4ffdbb3051914fe1983b47190eaed176.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="服务器角色"><br>web服务器（IIS），继续下一步<br>角色服务中勾选FTP服务器</p>
+<p><img src="https://img-blog.csdnimg.cn/2ceb95e4c6554bcc9a19b21cf5206551.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="服务角色"><br>下一步，然后确认安装就行<br>然后再web服务器（IIS）下的Internet信息服务器右键添加FTP站点<br><img src="https://img-blog.csdnimg.cn/57dc8be00008425e933bf0be915983f3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="添加ftp站点"><br><img src="https://img-blog.csdnimg.cn/ac9106bdb5ed4749b20b9c598b90abfb.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="绑定和ssl设置"><br>指定可登录的用户（就安全来讲，最好不要用administrator用户或是管理员组的用户）<br><img src="https://img-blog.csdnimg.cn/f4503c872fa24b83906f6acdb31b059e.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="身份认证"><br>完成<br>用同一网段的一台win7测试ftp服务<br><a href="ftp://ftp服务器ip/">ftp://ftp服务器ip</a><br><img src="https://img-blog.csdnimg.cn/705efea5bea840afa6801c033ba0e2b1.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="登录ftp"><br>能够登录访问就行<br><img src="https://img-blog.csdnimg.cn/76e485d653f14e688d7ca6109d7598e9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >学校任务，唉，尽让搞些有的没的</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/DHCP/">DHCP</a>
+                    
+                  </div>
                 
               </div>
               
@@ -261,15 +274,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/">
+                        <span class="hidden-mobile">内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/home.gif">
-  <link rel="icon" href="/img/home.gif">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,14 +18,10 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>Hexo</title>
+  <title>qiyeNuLl&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
-  <style>
-	body{
-		cursor: url(sursor.cur),auto;
-	}
-  </style>
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +52,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>qiyeNuLl's blog</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -75,7 +71,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                Home
               </a>
             </li>
           
@@ -87,7 +83,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                Archives
               </a>
             </li>
           
@@ -99,7 +95,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                Categories
               </a>
             </li>
           
@@ -111,7 +107,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                Tags
               </a>
             </li>
           
@@ -123,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                About
               </a>
             </li>
           
@@ -146,7 +142,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/rainy.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -186,6 +182,52 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/09/21/DHCP%E3%80%81FTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" target="_self">
+          DHCP和FTP服务器的配置与管理
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/21/DHCP%E3%80%81FTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" target="_self">
+          
+          
+            
+          
+          DHCP和FTP服务器的配置与管理
+
+环境两台虚拟机，1台Windows 2008，1台Windows 7，网卡均设置成VMnet1
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-21 16:52" pubdate>
+              2021-09-21
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/DHCP/">DHCP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/" target="_self">
           内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
         </a>
@@ -199,10 +241,10 @@
           
           内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
 
-环境以下皆在虚拟机环境中进行测试（学校实验报告要求），严禁对外使用。攻击机kali：192.168.241.140目标机win7：192.168.241.136网关：192.168.241.2
+环境攻击机kali：192.168.241.140目标机win7：192.168.241.136网关：192.168.241.2
 
 
-总结同个局域网内，首先进行主机发掘，选定目标对其进行arp欺骗，然后对其流量分析，想尽办法与目标主机交互，在发现没有正面攻击手段时，可以选择DNS
+总结同个局域网内，首先进行主机发掘，选定目标对其进行arp欺骗，然后对其流量分析，想尽办法与目标主机交互，在发现没有正面攻击手段时，可以选择DNS欺骗，对目标外出流量进行拦截和欺骗，想方设法使其访问我们的钓鱼网
         </a>
       </p>
 
@@ -215,6 +257,13 @@
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>
+            
+          </div>
         
         
           <div class="post-meta">
