@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>qiyeNuLl&#39;s blog</title>
+  <title>Categories - 数据库 - qiyeNuLl&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -48,7 +48,7 @@
 
 
 <body>
-  <header style="height: 100vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,22 +142,18 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/rainy.jpg') no-repeat center center;
+         style="background: url('/img/scathach-4K.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="An elegant Material-Design theme for Hexo">
+            <span class="h2" id="subtitle" title="Category - 数据库">
               
             </span>
 
             
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -168,273 +164,34 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          style=margin-top:0>
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+  <p class="h4">2 posts in total.</p>
+  <hr>
+  
+  
     
+      
+      <p class="h5">2021</p>
     
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" target="_self">
-          Oracle数据库练习2
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" target="_self">
-          
-          
-            
-          
-          ﻿# Oracle数据库练习2：
-主要是emp、dept这两张表emp表：dept表：
-
-
-2、列出薪金比“SMITH”多的所有员工。：构造SMITH的sal值去比较
-1234567SELECT empno,ename,job,salFROM empWHERE sal&gt;(SELECT salFROM empWHERE ename= &#x27;SMITH&#x27;);
-
-
-4、列出受雇日期
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-24 20:30" pubdate>
-              2021-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
+    <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Oracle数据库练习2</span>
+      <time style="float: right;">09-24</time>
+    </a>
+  
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/23/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A01/" target="_self">
-          Oracle数据库练习1
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/23/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A01/" target="_self">
-          
-          
-            
-          
-          ﻿# Oracle数据库练习1：
-最近开始学Oracle数据库，那自然就少不了训练，所有自己就从网上找了点题做
-
-
-2.请在EMP表中查找部门号在10－30之间的雇员的姓名、部门号、工资、工作，按部门号由低到高向下排序，如果一样，按工资由低到高向下排序。
-1234SELECT ename,deptno,sal,jobFROM empWHERE deptno BETWEEN 10 AND 20ORD
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-23 00:50" pubdate>
-              2021-09-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/21/DHCP%E3%80%81FTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" target="_self">
-          DHCP和FTP服务器的配置与管理
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/21/DHCP%E3%80%81FTP%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" target="_self">
-          
-          
-            
-          
-          DHCP和FTP服务器的配置与管理
-
-环境两台虚拟机，1台Windows 2008，1台Windows 7，网卡均设置成VMnet1
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-21 16:52" pubdate>
-              2021-09-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/DHCP/">DHCP</a>
-            
-              <a href="/tags/FTP/">FTP</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/" target="_self">
-          内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/" target="_self">
-          
-          
-            
-          
-          内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
-
-环境攻击机kali：192.168.241.140目标机win7：192.168.241.136网关：192.168.241.2
-
-
-总结同个局域网内，首先进行主机发掘，选定目标对其进行arp欺骗，然后对其流量分析，想尽办法与目标主机交互，在发现没有正面攻击手段时，可以选择DNS欺骗，对目标外出流量进行拦截和欺骗，想方设法使其访问我们的钓鱼网
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 19:41" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/web/">web</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/18/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/18/hello-world/" target="_self">
-          
-          
-            
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 05:18" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+    <a href="/2021/09/23/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A01/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Oracle数据库练习1</span>
+      <time style="float: right;">09-23</time>
+    </a>
+  
+</div>
 
 
 
