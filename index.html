@@ -182,6 +182,131 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/10/02/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHttp%201/" target="_self">
+          buuctf-[极客大挑战 2019]Secret File1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/02/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHttp%201/" target="_self">
+          
+          
+            
+          
+          ﻿## buuctf-[极客大挑战 2019]Http 1
+
+解题点：
+
+ X-Forwarded-For、Referer、User-Agent
+ 
+ 
+ 
+X-Forwarded-For：通过http代理或负载均衡连接web服务器的原始ip地址
+
+Referer：页面请求来源地址
+
+User-Agent：用户代理，一般用来区分不同的浏览器
+
+
+
+
+
+一开始，打开bp抓包，看网页源代码时会发现一个
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-02 16:59" pubdate>
+              2021-10-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CTF/">CTF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/HTTP/">HTTP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/01/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DSecret%20File1/" target="_self">
+          buuctf-[极客大挑战 2019]Secret File1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/01/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DSecret%20File1/" target="_self">
+          
+          
+            
+          
+          ﻿## buuctf-[极客大挑战 2019]Secret File1
+
+
+题目地址：https://buuoj.cn/challenges
+
+题目上手，先确认网页源代码
+
+没事，跟着他走，直接访问Archive_room.php第二个页面是个点击框，这里bp抓包确认；若是直接访问，会跳到end.php可以发现secr3t.php才是我们应该访问的，那么我们直接访问secr3t.php很简单的代码
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-01 22:26" pubdate>
+              2021-10-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CTF/">CTF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PHP/">PHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" target="_self">
           Oracle数据库练习2
         </a>
@@ -197,11 +322,8 @@
 主要是emp、dept这两张表emp表：dept表：
 
 
-2、列出薪金比“SMITH”多的所有员工。：构造SMITH的sal值去比较
-1234567SELECT empno,ename,job,salFROM empWHERE sal&gt;(SELECT salFROM empWHERE ename= &#x27;SMITH&#x27;);
-
-
-4、列出受雇日期
+1、列出至少有一个员工的所有部门多表查询，按部门编号（deptno）分组，再对每个组里人员编号（empno）进行大于等于1的过滤筛选
+12345SELECT d.deptno,COUNT(e.empno)FROM emp e,dept dWHERE e.deptno = d.deptno(+)HAVING 
         </a>
       </p>
 
@@ -255,8 +377,8 @@
 最近开始学Oracle数据库，那自然就少不了训练，所有自己就从网上找了点题做
 
 
-2.请在EMP表中查找部门号在10－30之间的雇员的姓名、部门号、工资、工作，按部门号由低到高向下排序，如果一样，按工资由低到高向下排序。
-1234SELECT ename,deptno,sal,jobFROM empWHERE deptno BETWEEN 10 AND 20ORD
+1.请从表EMP中查找工种是职员CLERK或经理MANAGER的雇员姓名、工资,按工资由低到高向下排序。
+1234SELECT ename,salFROM empWHERE (job = &#x27;CLERK&#x27;) OR (job = &#x27;MANAGER&#x27;
         </a>
       </p>
 

@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      239 字
+      520 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        分钟
     </span>
   
@@ -230,28 +230,28 @@
             <div class="markdown-body">
               <p>﻿# Oracle数据库练习2：</p>
 <p><font color=#999AAA >主要是emp、dept这两张表<br>emp表：<br><img src="https://img-blog.csdnimg.cn/0e8f3c2ef9fc4ec8810e102d66055834.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="emp表"><br>dept表：<br><img src="https://img-blog.csdnimg.cn/ee51a99515614046b3a41a944d3071b8.png#pic_center" srcset="/img/loading.gif" lazyload alt="dept表"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 <p>1、列出至少有一个员工的所有部门<br>多表查询，按部门编号（deptno）分组，再对每个组里人员编号（empno）进行大于等于1的过滤筛选</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> d.deptno,<span class="hljs-built_in">COUNT</span>(e.empno)<br><span class="hljs-keyword">FROM</span> emp e,dept d<br><span class="hljs-keyword">WHERE</span> e.deptno <span class="hljs-operator">=</span> d.deptno(<span class="hljs-operator">+</span>)<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(e.ename) <span class="hljs-operator">&gt;=</span> <span class="hljs-number">1</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">by</span> d.deptno;<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 <p>2、列出薪金比“SMITH”多的所有员工。：<br>构造SMITH的sal值去比较</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> empno,ename,job,sal<br><span class="hljs-keyword">FROM</span> emp<br><span class="hljs-keyword">WHERE</span> sal<span class="hljs-operator">&gt;</span>(<br><span class="hljs-keyword">SELECT</span> sal<br><span class="hljs-keyword">FROM</span> emp<br><span class="hljs-keyword">WHERE</span> ename<span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SMITH&#x27;</span><br>);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 <p>3、列出所有员工的姓名及其直接上级的姓名。<br>多表查询，对上级编号（mgr）和个人编号（empno）进行匹配</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> e.ename,s.ename <span class="hljs-keyword">as</span> lead<br><span class="hljs-keyword">FROM</span> emp e,emp s<br><span class="hljs-keyword">WHERE</span> e.mgr <span class="hljs-operator">=</span> s.empno(<span class="hljs-operator">+</span>);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 4、列出受雇日期早于其直接上级的所有员工。
 
 <p>上一题的基础上，同时对入职日期进行判断</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> e.ename<br><span class="hljs-keyword">FROM</span> emp e,emp s<br><span class="hljs-keyword">WHERE</span> (e.mgr <span class="hljs-operator">=</span> s.empno) <span class="hljs-keyword">AND</span> (e.hiredate <span class="hljs-operator">&lt;</span> s.hiredate);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 5、列出部门名称和这些部门的员工信息，同时列出那些没有员工的部门。
 
 <p>多表查询</p>
@@ -259,18 +259,18 @@
 <p>或者</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> d.dname,e.<span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> dept d,emp e<br><span class="hljs-keyword">WHERE</span> d.deptno <span class="hljs-operator">=</span> e.deptno(<span class="hljs-operator">+</span>);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 6、列出所有“CLERK”（办事员）的姓名及其部门名称。
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> e.ename,e.job,d.dname<br><span class="hljs-keyword">FROM</span> emp e,dept d<br><span class="hljs-keyword">WHERE</span> (e.job <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;CLERK&#x27;</span>) <span class="hljs-keyword">AND</span> (e.deptno <span class="hljs-operator">=</span> d.deptno);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 7、列出最低薪金大于1500的各种工作。
 
 <p>按工作分组，过滤筛选最低薪金大于1500的数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> job,<span class="hljs-built_in">MIN</span>(sal)<br><span class="hljs-keyword">FROM</span> emp<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">by</span> job<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MIN</span>(sal) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1500</span>;<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 8、列出在部门“SALES”（销售部）工作的员工的姓名，假定不知道销售部的部门编号。
 
 <p>多表查询，用部门编号（deptno）匹配两表，同时判定部门是’SALES’（销售部）</p>
@@ -278,13 +278,13 @@
 <p>或者 </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> emp<br><span class="hljs-keyword">WHERE</span> deptno <span class="hljs-operator">=</span> <br>(<span class="hljs-keyword">SELECT</span> deptno <span class="hljs-keyword">FROM</span> dept <span class="hljs-keyword">WHERE</span> dname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SALES&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 9、列出薪金高于公司平均薪金的所有员工。
 
 <p>构造公司平均薪金去比较</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span> emp<br><span class="hljs-keyword">WHERE</span> sal <span class="hljs-operator">&gt;</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(sal) <span class="hljs-keyword">FROM</span> emp);<br></code></pre></td></tr></table></figure>
 
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
             </div>
             <hr>
@@ -318,6 +318,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/10/01/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DSecret%20File1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">buuctf-[极客大挑战 2019]Secret File1</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
