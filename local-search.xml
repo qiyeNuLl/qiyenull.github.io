@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Bugku_login 1</title>
+    <link href="/2021/10/08/Bugku_login%201/"/>
+    <url>/2021/10/08/Bugku_login%201/</url>
+    
+    <content type="html"><![CDATA[<p>﻿<h1>Bugku_login 1</h1></p><hr /><p><strong>解题点：</strong></p><p>SQL约束攻击</p><hr /><p><strong>SQL约束攻击：</strong><br>举个栗子：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> users(username, password) <span class="hljs-keyword">values</span>(&quot;admin               x&quot;, &quot;qiye&quot;);<br></code></pre></td></tr></table></figure><p>前提，MySQL的sql_mode设置为default</p><p>我注册一个上述那样admin的值<br>首先，在php里会判定和admin不是同个用户，是新注册的用户<br>然后到了数据库，由于超过字段限制的最大长度，<strong>会发生截断</strong>，这个值多余部分会被截断，而多余的空格会被删除，此时，数据库听php写入这条信息，你就可以用自己注册时用的密码直接登录admin，而系统会认为你是admin管理员，达到越权行为。</p><hr /><p><strong>解题：</strong><br>知道原理后，这题其实很简单，直接注册一个超过字段长度的admin用户<br><img src="https://img-blog.csdnimg.cn/99f50430932744eda133737dad999fb7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="注册"><br>注册成功就行<br>然后登录admin用户，用的密码是自己注册时用的密码<br><img src="https://img-blog.csdnimg.cn/d0033450e34b40279bddc5c7918fc2bc.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="登录admin"><br>拿到flag<br><img src="https://img-blog.csdnimg.cn/33fd86febe21436985755d99a9fd9100.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="flag"><br>参考文章：<br><a href="https://blog.csdn.net/m0_37444209/article/details/92229495">sql约束攻击</a><br><a href="https://www.cnblogs.com/vincy99/p/9642941.html">sql语句截断</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CTF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>sql注入</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>buuctf-[极客大挑战 2019]Secret File1</title>
     <link href="/2021/10/02/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHttp%201/"/>
     <url>/2021/10/02/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHttp%201/</url>
