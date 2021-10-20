@@ -182,6 +182,123 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/10/20/%5BCISCN2019%20%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA%20Day2%20Web1%5DHack%20World%201/" target="_self">
+          CISCN2019 华北赛区 Day2 Web1 Hack World 1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/20/%5BCISCN2019%20%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA%20Day2%20Web1%5DHack%20World%201/" target="_self">
+          
+          
+            
+          
+          ﻿[CISCN2019 华北赛区 Day2 Web1]Hack World 1https://buuoj.cn/
+
+
+解题点：
+异或盲注
+
+
+1.fuzzbp抓包，对post参数id进行fuzz测试and、or、group_concat均被过滤
+但是题目很友好，把flag所在表名和字段名都给你，能省很多事
+感谢大佬整理：sql-fuzz字典
+2.异或注入输入1，2均有回显但输入字母，会回显bool
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-20 17:44" pubdate>
+              2021-10-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CTF/">CTF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/20/%5BMRCTF2020%5DEz_bypass%201/" target="_self">
+          MRCTF2020 Ez_bypass 1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/20/%5BMRCTF2020%5DEz_bypass%201/" target="_self">
+          
+          
+            
+          
+          [MRCTF2020]Ez_bypass 1https://buuoj.cn/
+
+
+解题点：1.MD5强碰撞2.is_numerice() 绕过
+
+
+代码审计：
+123456789101112131415161718if(isset($_GET[&#x27;gg&#x27;])&amp;&amp;isset($_GET[&#x27;id&#x27;])) &#123;     $id=$_GET[
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-20 16:24" pubdate>
+              2021-10-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CTF/">CTF</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/PHP/">PHP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/10/18/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9Dms17_010%E5%A4%8D%E7%8E%B0/" target="_self">
           永恒之蓝ms17_010复现
         </a>
@@ -193,12 +310,12 @@
           
             
           
-          ﻿﻿# 永恒之蓝ms17_010复现
+          ﻿﻿永恒之蓝ms17_010复现
 
 
 
 永恒之蓝ms17_010
-2017年5月12日起，全球范围内爆发基于Windows网络共享协议进行攻击传播的蠕虫恶意代码，这是不法分子通过改造之前泄露的NSA黑客武器库中“永恒之蓝”攻击程序发起的网络攻击事件。五个小时内，包括英国、俄罗斯、整个欧洲以及中国国内多个高校校内网、大型企业内网和政府机构专网中招，被勒索支付高额赎金才能解密恢复文件，对重要数据造
+2017年5月12日起，全球范围内爆发基于Windows网络共享协议进行攻击传播的蠕虫恶意代码，这是不法分子通过改造之前泄露的NSA黑客武器库中“永恒之蓝”攻击程序发起的网络攻击事件。五个小时内，包括英国、俄罗斯、整个欧洲以及中国国内多个高校校内网、大型企业内网和政府机构专网中招，被勒索支付高额赎金才能解密恢复文件，对重要数据造成严
         </a>
       </p>
 
@@ -250,12 +367,12 @@
           
             
           
-          ﻿﻿# Oracle数据库查询训练Oracle查询语句最后的练习范围是scott用户专属自带的emp、dept和salgrade三张表
+          ﻿﻿Oracle数据库查询训练Oracle查询语句最后的练习范围是scott用户专属自带的emp、dept和salgrade三张表
 
 
 
 题目：1.查询薪金高于在部门 30 工作的所有员工的薪金的员工姓名和薪金、部门名称、部门人数
-123456789SELECT e.ename,e.sal,d.dname,temp.countFROM emp e,dept d,(    SELECT dept
+123456789SELECT e.ename,e.sal,d.dname,temp.countFROM emp e,dept d,(    SELECT deptno
         </a>
       </p>
 
@@ -355,7 +472,7 @@ SQL约束攻击：举个栗子：
       <h1 class="index-header">
         
         <a href="/2021/10/02/buuctf-%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019%5DHttp%201/" target="_self">
-          buuctf-[极客大挑战 2019]Secret File1
+          buuctf-[极客大挑战 2019]Http 1
         </a>
       </h1>
 
@@ -365,7 +482,7 @@ SQL约束攻击：举个栗子：
           
             
           
-          ﻿## buuctf-[极客大挑战 2019]Http 1
+          ﻿buuctf-[极客大挑战 2019]Http 1
 
 解题点：
 
@@ -383,7 +500,7 @@ User-Agent：用户代理，一般用来区分不同的浏览器
 
 
 
-一开始，打开bp抓包，看网页源代码时会发现一个
+一开始，打开bp抓包，看网页源代码时会发现一个前往S
         </a>
       </p>
 
@@ -433,14 +550,14 @@ User-Agent：用户代理，一般用来区分不同的浏览器
           
             
           
-          ﻿## buuctf-[极客大挑战 2019]Secret File1
+          ﻿buuctf-[极客大挑战 2019]Secret File1
 
 
 题目地址：https://buuoj.cn/challenges
 
 题目上手，先确认网页源代码
 
-没事，跟着他走，直接访问Archive_room.php第二个页面是个点击框，这里bp抓包确认；若是直接访问，会跳到end.php可以发现secr3t.php才是我们应该访问的，那么我们直接访问secr3t.php很简单的代码
+没事，跟着他走，直接访问Archive_room.php第二个页面是个点击框，这里bp抓包确认；若是直接访问，会跳到end.php可以发现secr3t.php才是我们应该访问的，那么我们直接访问secr3t.php很简单的代码审计,
         </a>
       </p>
 
@@ -490,12 +607,12 @@ User-Agent：用户代理，一般用来区分不同的浏览器
           
             
           
-          ﻿# Oracle数据库练习2：
+          ﻿Oracle数据库练习2：
 主要是emp、dept这两张表emp表：dept表：
 
 
 1、列出至少有一个员工的所有部门多表查询，按部门编号（deptno）分组，再对每个组里人员编号（empno）进行大于等于1的过滤筛选
-12345SELECT d.deptno,COUNT(e.empno)FROM emp e,dept dWHERE e.deptno = d.deptno(+)HAVING 
+12345SELECT d.deptno,COUNT(e.empno)FROM emp e,dept dWHERE e.deptno = d.deptno(+)HAVING CO
         </a>
       </p>
 
@@ -545,12 +662,12 @@ User-Agent：用户代理，一般用来区分不同的浏览器
           
             
           
-          ﻿# Oracle数据库练习1：
+          ﻿Oracle数据库练习1：
 最近开始学Oracle数据库，那自然就少不了训练，所有自己就从网上找了点题做
 
 
 1.请从表EMP中查找工种是职员CLERK或经理MANAGER的雇员姓名、工资,按工资由低到高向下排序。
-1234SELECT ename,salFROM empWHERE (job = &#x27;CLERK&#x27;) OR (job = &#x27;MANAGER&#x27;
+1234SELECT ename,salFROM empWHERE (job = &#x27;CLERK&#x27;) OR (job = &#x27;MANAGER&#x27;)O
         </a>
       </p>
 
@@ -602,8 +719,15 @@ User-Agent：用户代理，一般用来区分不同的浏览器
           
           DHCP和FTP服务器的配置与管理
 
+@TOC
+
+
+
+
 环境两台虚拟机，1台Windows 2008，1台Windows 7，网卡均设置成VMnet1
 
+
+一、DHCP服务器搭建打开服务器管理器，在角色中创建新角色，选择dhcp服务器Ipv4父域随便来，这里是（qiyeserver.com）首选NDS服务器ipv4地址为：192.168.31.21（要与本地ipv4地址同一网段，但不要一样，会有i
         </a>
       </p>
 
@@ -638,99 +762,13 @@ User-Agent：用户代理，一般用来区分不同的浏览器
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/" target="_self">
-          内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/18/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F(arp%E6%AC%BA%E9%AA%97%20+%20DNS%E6%AC%BA%E9%AA%97%20+%20%E7%BD%91%E7%AB%99%E9%92%93%E9%B1%BC)/" target="_self">
-          
-          
-            
-          
-          内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)
-
-环境攻击机kali：192.168.241.140目标机win7：192.168.241.136网关：192.168.241.2
 
 
-总结同个局域网内，首先进行主机发掘，选定目标对其进行arp欺骗，然后对其流量分析，想尽办法与目标主机交互，在发现没有正面攻击手段时，可以选择DNS欺骗，对目标外出流量进行拦截和欺骗，想方设法使其访问我们的钓鱼网
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 19:41" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/web/">web</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/18/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/18/hello-world/" target="_self">
-          
-          
-            
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 05:18" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
 
 
 

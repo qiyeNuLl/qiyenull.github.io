@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      149 字
+      1k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      11
        分钟
     </span>
   
@@ -228,13 +228,13 @@
             <h1 style="display: none">内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)</h1>
             
             <div class="markdown-body">
-              <h1 id="内网渗透-arp欺骗-DNS欺骗-网站钓鱼"><a href="#内网渗透-arp欺骗-DNS欺骗-网站钓鱼" class="headerlink" title="内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)"></a>内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+              <h1 id="内网渗透-arp欺骗-DNS欺骗-网站钓鱼"><a href="#内网渗透-arp欺骗-DNS欺骗-网站钓鱼" class="headerlink" title="内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)"></a>内网渗透(arp欺骗 + DNS欺骗 + 网站钓鱼)</h1><hr />
 
 <p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p><font color=#999AAA >攻击机kali：192.168.241.140<br>目标机win7：192.168.241.136<br>网关：192.168.241.2<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 
 
@@ -255,7 +255,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">cd</span> /usr/share/beef<span class="hljs-literal">-xss</span><br>./beef<br></code></pre></td></tr></table></figure>
 
 <p>最新版不能用默认账号密码登录，所以要在配置里改账号和密码,在/etc/beef-xss/config.yaml<br>成功运行后：<br><img src="https://img-blog.csdnimg.cn/6c592072f45f49ae857b4dafe811a387.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>把图中 <a target="_blank" rel="noopener" href="http://192.168.241.140:3000/hook.js%E5%A4%8D%E5%88%B6%E5%88%B0/var/www/html/index.html%E4%B8%AD">http://192.168.241.140:3000/hook.js复制到/var/www/html/index.html中</a><br>写法如下（最后一行）：<br><img src="https://img-blog.csdnimg.cn/2091e1083e514660baf43745bc39ef5a.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>在这之后，我们用浏览器打开  <a target="_blank" rel="noopener" href="http://192.168.241.140:3000/ui/panel">http://192.168.241.140:3000/ui/panel</a><br>登录beef，由于之前的dns欺骗，目标一旦访问带.com结尾的网站，就会重定向到我们的钓鱼网站，这里假设目标访问了<a href="http://www.baidu.com，那么beef就会回应我们：">www.baidu.com，那么beef就会回应我们：</a><br><img src="https://img-blog.csdnimg.cn/783acd8b1082450f952b498ba1ab9ea9.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>可以看到目标机已经出现（192.168.241.136）浏览器用的是ie8,接下来对他进行文件欺骗<br><img src="https://img-blog.csdnimg.cn/73e91cad699f4ce296f7ee9892108877.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>这里有两个下载提示，一个是我用beef伪造给用户并且不会被浏览器拦截的文件(没错，这个就是我们开头做的木马)，一个是社会工程学工具包HTA攻击伪造的文件，会被拦截，而且后面无法反弹shell（试了n次）。<br><img src="https://img-blog.csdnimg.cn/6c7f1c85f393471abecf1ac2890e9483.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>运用beef功能，给目标一个提示，忽哟目标下载运行，<br>一旦目标运行，msf就会收到反弹回来shell连接<br><img src="https://img-blog.csdnimg.cn/9e078ae6303d4b718c1137bc7ca1fa2c.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>直接输入shell，在看ip，正是目标机：<br><img src="https://img-blog.csdnimg.cn/b5210f39ce8645fabe366519a1e8e0d7.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>接下来就是提权了</p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<hr />
 
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >同个局域网内，首先进行主机发掘，选定目标对其进行arp欺骗，然后对其流量分析，想尽办法与目标主机交互，在发现没有正面攻击手段时，可以选择DNS欺骗，对目标外出流量进行拦截和欺骗，想方设法使其访问我们的钓鱼网站或下载木马文件，绕过浏览器拦截极其重要。</p>
 
