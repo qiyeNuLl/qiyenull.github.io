@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/home.gif">
+  <link rel="icon" href="/img/home.gif">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+  <title>实训Day2-DNS - qiyeNuLl&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>qiyeNuLl's blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/kinko.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="实训Day2-DNS">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-24 16:00" pubdate>
+        November 24, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">实训Day2-DNS</h1>
+            
+            <div class="markdown-body">
+              <h1 id="实训第二天-DNS的搭建"><a href="#实训第二天-DNS的搭建" class="headerlink" title="实训第二天-DNS的搭建"></a>实训第二天-DNS的搭建</h1><h4 id="1-DNS安装与环境"><a href="#1-DNS安装与环境" class="headerlink" title="1. DNS安装与环境"></a>1. DNS安装与环境</h4><p>ps：跟陈总的文档完全不同</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">安装<span class="hljs-built_in">bind</span></span><br>yum install -y bind bind-utils<br></code></pre></td></tr></table></figure>
+
+<p>关于环境：</p>
+<p>不先处理一些环境问题，后面处理起来，人要疯</p>
+<p>环境：必要两台centos7，复数其它任意网段主机（可有可无）</p>
+<p><strong>首先是固定自己的ip（是啊，教室到宿舍，在到教室，网络一断，又得重新配）</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">主NDS服务器</span><br>vim /etc/sysconfig/network-scripts/ifcfg-eno16777736<br>TYPE=Ethernet<br>BOOTPROTO=static    #改为static<br>DEFROUTE=yes<br>PEERDNS=yes<br>PEERROUTES=yes<br>IPV4_FAILURE_FATAL=no<br>IPV6INIT=yes<br>IPV6_AUTOCONF=yes<br>IPV6_DEFROUTE=yes<br>IPV6_PEERDNS=yes<br>IPV6_PEERROUTES=yes<br>IPV6_FAILURE_FATAL=no<br>NAME=eno16777736<br>UUID=118af5e5-92de-42b0-a1c6-619c8d9d6c81   #可删<br>ONBOOT=yes      #改为yes<br>IPADDR=192.168.241.129    #本地ip<br>PREFIX=24<br>GATEWAY=192.168.241.2<br>DNS1=192.168.241.129      #本地ip<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">容灾所使用的服务器（由于是主服务器克隆而来，网卡一摸一样）</span><br>vim /etc/sysconfig/network-scripts/ifcfg-eno16777736<br>TYPE=Ethernet<br>BOOTPROTO=static<br>DEFROUTE=yes<br>PEERDNS=yes<br>PEERROUTES=yes<br>IPV4_FAILURE_FATAL=no<br>IPV6INIT=yes<br>IPV6_AUTOCONF=yes<br>IPV6_DEFROUTE=yes<br>IPV6_PEERDNS=yes<br>IPV6_PEERROUTES=yes<br>IPV6_FAILURE_FATAL=no<br>NAME=eno16777736<br>IPADDR=192.168.241.134     #自己的ip，注意区分<br>PREFIX=24<br>GATEWAY=192.168.241.2<br>ONBOOT=yes<br>DNS1=192.168.241.134      #自己的ip，注意区分<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">记得更新网络配置</span><br>service network restart<br></code></pre></td></tr></table></figure>
+
+<p>其次是关闭防火墙和SELinux</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">控制变量，人人有责</span><br>[root@localhost ~] systemctl stop firewalld<br>[root@localhost ~] setenforce 0<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-DNS的配置和部署"><a href="#2-DNS的配置和部署" class="headerlink" title="2. DNS的配置和部署"></a>2. DNS的配置和部署</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">尝试启动DNS</span><br>[root@localhost ~] systemctl status named<br>named.service - Berkeley Internet Name Domain (DNS)<br>   Loaded: loaded (/usr/lib/systemd/system/named.service; disabled)<br>   Active: inactive (dead)<br></code></pre></td></tr></table></figure>
+
+<p>没有配置文件，无法启动很正常</p>
+<h5 id="主配置文件修改"><a href="#主配置文件修改" class="headerlink" title="主配置文件修改"></a>主配置文件修改</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost ~] vim /etc/named.conf<br><br>options &#123;<br>        listen-on port 53 &#123; any; &#125;;         #ip地址修改成any<br>        listen-on-v6 port 53 &#123; ::1; &#125;;<br>        directory       &quot;/var/named&quot;;<br>        dump-file       &quot;/var/named/data/cache_dump.db&quot;;<br>        statistics-file &quot;/var/named/data/named_stats.txt&quot;;<br>        memstatistics-file &quot;/var/named/data/named_mem_stats.txt&quot;;<br>        recursing-file  &quot;/var/named/data/named.recursing&quot;;<br>        secroots-file   &quot;/var/named/data/named.secroots&quot;;<br>        allow-query     &#123; any; &#125;;        #一样改成any<br></code></pre></td></tr></table></figure>
+
+<h5 id="配置正向解析与反向解析"><a href="#配置正向解析与反向解析" class="headerlink" title="配置正向解析与反向解析"></a>配置正向解析与反向解析</h5><p>后面的容灾也需要以下配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/named.rfc1912.zones<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">在末尾增加以下</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">正向解析</span><br>zone &quot;qiye.com&quot; IN &#123;<br>        type master;<br>        file &quot;qiye.com.zone&quot;;						#正向解析文件路径<br>        allow-transfer &#123; 192.168.241.134; &#125;;       #允许转移数据（容灾）<br>        allow-update &#123; 192.168.241.134; &#125;;       #允许这个ip更新数据（容灾）<br>&#125;;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">反向解析</span><br>zone &quot;241.168.192.in-addr.arpa&quot; IN &#123;<br>        type master;<br>        file &quot;qiye.com.local&quot;;						#反向解析文件路径<br>        allow-transfer &#123; 192.168.241.134; &#125;;     #允许转移数据（容灾）<br>        allow-update &#123; 192.168.241.134; &#125;;		#允许这个ip更新数据（容灾）<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"><span class="hljs-built_in">cd</span>到正向解析和反向解析文件所在的文件夹</span><br>cd /var/named/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">创建正向解析文件和反向解析文件：</span><br>[root@localhost named] ls<br>data  dynamic  named.ca  named.empty  named.localhost  named.loopback  slaves<br><span class="hljs-meta">#</span><span class="bash">将模板复制过来，即：</span><br>[root@localhost named] cp -p named.localhost qiye.com.zone<br>[root@localhost named] cp -p named.loopback qiye.com.local<br>ps：假如他们的所属组是root，那么请将他们所属组改成named（我这里不用）<br>[root@localhost named]# ll<br>total 24	 #所有者 所属组<br>drwxrwx---. 2 named named    6 Aug 31 07:53 data<br>drwxrwx---. 2 named named    6 Aug 31 07:53 dynamic<br>-rw-r-----. 1 root  named 2253 Apr  5  2018 named.ca<br>-rw-r-----. 1 root  named  152 Dec 15  2009 named.empty<br>-rw-r-----. 1 root  named  152 Jun 21  2007 named.localhost<br>-rw-r-----. 1 root  named  168 Dec 15  2009 named.loopback<br>-rw-r-----. 1 root  named  168 Dec 15  2009 qiye.com.local<br>-rw-r-----. 1 root  named  152 Jun 21  2007 qiye.com.zone<br>drwxrwx---. 2 named named    6 Aug 31 07:53 slaves<br><span class="hljs-meta">#</span><span class="bash">修改所属组语句：</span><br>[root@localhost named] chown -R named:named qiye.com.local<br>[root@localhost named] chown -R named:named qiye.com.zone<br></code></pre></td></tr></table></figure>
+
+<p>对两个文件进行DNS域名解析编辑</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost named] vim qiye.com.zone<br>[root@localhost named] vim qiye.com.local<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">正向解析文件</span><br><span class="hljs-meta">$</span><span class="bash">TTL 1D</span><br>@       IN SOA  qiye.com. rname.invalid. (<br>                                        0       ; serial<br>                                        1D      ; refresh<br>                                        1H      ; retry<br>                                        1W      ; expire<br>                                        3H )    ; minimum<br>        NS      @<br>        A       127.0.0.1<br>        AAAA    ::1<br>        NS      ns.qiye.com.<br>ns      IN A    192.168.241.129<br>www     IN A    192.168.241.129<br>email   IN A    192.168.241.129<br>c2      IN A    192.168.241.134<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">反向解析文件</span><br><span class="hljs-meta">$</span><span class="bash">TTL 1D</span><br>@       IN SOA  @ rname.invalid. (<br>                                        0       ; serial<br>                                        1D      ; refresh<br>                                        1H      ; retry<br>                                        1W      ; expire<br>                                        3H )    ; minimum<br>        NS      @<br>        A       127.0.0.1<br>        AAAA    ::1<br>        PTR     localhost.<br>        NS      ns.qiye.com.<br><br>ns      A       192.168.241.129<br>129     PTR     www.qiye.com.<br>129     PTR     email.qiye.com.<br>134     PTR     c2.qiye.com.<br></code></pre></td></tr></table></figure>
+
+<h5 id="修改DNS配置"><a href="#修改DNS配置" class="headerlink" title="修改DNS配置"></a>修改DNS配置</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost named] vim /etc/resolv.conf<br>nameserver 192.168.241.129<br>nameserver 114.114.114.114  #可有可无，防止断网<br></code></pre></td></tr></table></figure>
+
+<h5 id="再次启动DNS服务"><a href="#再次启动DNS服务" class="headerlink" title="再次启动DNS服务"></a>再次启动DNS服务</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">没任何返回，则正常运行</span><br>[root@localhost named] systemctl start named<br><span class="hljs-meta">#</span><span class="bash">53端口检查状态</span><br>[root@localhost named]  lsof -i :53<br>COMMAND   PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME<br>named   43300 named   21u  IPv4  91166      0t0  TCP localhost:domain (LISTEN)<br>named   43300 named   22u  IPv4  91168      0t0  TCP www.qiye.com:domain (LISTEN)<br>named   43300 named   23u  IPv6  91170      0t0  TCP localhost:domain (LISTEN)<br>named   43300 named   26u  IPv4  91426      0t0  TCP 192.168.241.147:domain (LISTEN)<br>named   43300 named  512u  IPv4  91164      0t0  UDP localhost:domain <br>named   43300 named  513u  IPv4  91167      0t0  UDP www.qiye.com:domain <br>named   43300 named  514u  IPv6  91169      0t0  UDP localhost:domain <br>named   43300 named  515u  IPv4  91425      0t0  UDP 192.168.241.147:domain <br><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-实现DNS域名解析"><a href="#3-实现DNS域名解析" class="headerlink" title="3.实现DNS域名解析"></a>3.实现DNS域名解析</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">成功正反向解析域名和ip，ya*da*ze！</span><br>[root@localhost named] nslookup 192.168.241.129<br>129.241.168.192.in-addr.arpa	name = email.qiye.com.<br>129.241.168.192.in-addr.arpa	name = www.qiye.com.<br><br>[root@localhost named] nslookup www.qiye.com<br>Server:		192.168.241.129<br>Address:	192.168.241.129#53<br><br>Name:	www.qiye.com<br>Address: 192.168.241.129<br><br>[root@localhost named] nslookup c2.qiye.com<br>Server:		192.168.241.129<br>Address:	192.168.241.129#53<br><br>Name:	c2.qiye.com<br>Address: 192.168.241.134<br></code></pre></td></tr></table></figure>
+
+<p>截图为证！</p>
+<p><img src="https://img-blog.csdnimg.cn/718ea8daed1b47e481d0383093abf851.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="验证成功"></p>
+<h4 id="4-容灾处理"><a href="#4-容灾处理" class="headerlink" title="4.容灾处理"></a>4.容灾处理</h4><p>在克隆的centos7上的操作（192.168.241.134）</p>
+<p>无非是对配置文件的处理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">与前面一样</span><br>vim /etc/named.conf<br><br>options &#123;<br>        listen-on port 53 &#123; any; &#125;;<br>        listen-on-v6 port 53 &#123; ::1; &#125;;<br>        directory       &quot;/var/named&quot;;<br>        dump-file       &quot;/var/named/data/cache_dump.db&quot;;<br>        statistics-file &quot;/var/named/data/named_stats.txt&quot;;<br>        memstatistics-file &quot;/var/named/data/named_mem_stats.txt&quot;;<br>        recursing-file  &quot;/var/named/data/named.recursing&quot;;<br>        secroots-file   &quot;/var/named/data/named.secroots&quot;;<br>        allow-query     &#123; any; &#125;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">注意！！！！！这里变了</span><br>[root@localhost ~] vim /etc/named.rfc1912.zones<br><br>zone &quot;qiye.com&quot; IN &#123;<br>        type slave;    #改成slave<br>        file &quot;slave/qiye.com.zone&quot;;    #路径可以变<br>        masters &#123; 192.168.241.129; &#125;;  #主DNS服务器的ip地址<br>&#125;;<br><br>zone &quot;241.168.192.in-addr.arpa&quot; IN &#123;<br>        type slave;    #改成slave<br>        file &quot;slave/qiye.com.local&quot;;   #路径变了<br>        masters &#123; 192.168.241.129; &#125;;  #主DNS服务器ip地址<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">DNS修改</span><br>[root@localhost ~] vim /etc/resolv.conf<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">domain localdomain</span><br>search localdomain<br><span class="hljs-meta">#</span><span class="bash">nameserver 192.168.241.2</span><br>nameserver 192.168.241.129    #主DNS服务器ip地址<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">查看有无正反向解析文件存在</span><br>[root@localhost ~] ls /var/named/slaves/   #如果不存在，则把主DNS服务器的两个正反解析文件拷过来到slaves文件夹里（我的是这两个文件 qiye.com.zone，qiye.com.local）<br><br>[root@localhost ~] cd /var/named/slaves/<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">更新DNS服务</span><br>[root@localhost ~] systemctl restart named<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">验证是否成功</span><br><br>[root@localhost ~] ifconfig<br>eno16777736: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 192.168.241.134  netmask 255.255.255.0  broadcast 192.168.241.255<br><br>[root@localhost ~] nslookup www.qiye.com<br>Server:		192.168.241.129<br>Address:	192.168.241.129#53<br><br>Name:	www.qiye.com<br>Address: 192.168.241.129<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">ping一下，发现解析成功！</span><br>[root@localhost ~] ping www.qiye.com<br>PING www.qiye.com (192.168.241.129) 56(84) bytes of data.<br>64 bytes from www.qiye.com (192.168.241.129): icmp_seq=1 ttl=64 time=0.782 ms<br>64 bytes from email.qiye.com (192.168.241.129): icmp_seq=2 ttl=64 time=0.419 ms<br>64 bytes from email.qiye.com (192.168.241.129): icmp_seq=3 ttl=64 time=0.711 ms<br>^C<br>--- www.qiye.com ping statistics ---<br>3 packets transmitted, 3 received, 0% packet loss, time 2002ms<br>rtt min/avg/max/mdev = 0.419/0.637/0.782/0.158 ms<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/1b34eadb21424a0cb7e86a8690579dd9.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Ly96JOd5LmL5aCC,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="验证成功"></p>
+<p>完成，<a target="_blank" rel="noopener" href="http://www.qiye.com正是主dns服务器的域名,ip地址192.168.241.129/">www.qiye.com正是主DNS服务器的域名，ip地址192.168.241.129</a></p>
+<p>ya<em>da</em>ze！</p>
+<h4 id="5-智能解析"><a href="#5-智能解析" class="headerlink" title="5.智能解析"></a>5.智能解析</h4><p>部署一台DNS智能解析服务器，对 qiye.com 域名做如下智能解析：</p>
+<p>广州用户解析 IP 为 1.1.1.1</p>
+<p>深圳用户解析 IP 为 2.2.2.2</p>
+<p>其他用户解析为 3.3.3.3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">修改主配置文件</span><br>vim /etc/named.conf<br><span class="hljs-meta">#</span><span class="bash">新增以下</span><br>acl gz &#123;              #规则：这个网段ip，返回gz文件的DNS的ip<br>    192.168.247.0/24;<br>&#125;;<br>acl sz &#123;			#规则：这个网段ip，返回sz文件的DNS的ip<br>    192.168.100.0/24;<br>&#125;;<br>acl ot &#123;     	#规则：除上述网段ip，返回ot文件的DNS的ip<br>    any;<br>&#125;;<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">并且注释zone <span class="hljs-string">&quot;.&quot;</span></span><br>/*<br>zone &quot;.&quot; IN &#123;<br>        type hint;<br>        file &quot;named.ca&quot;;<br>&#125;;<br>*/<br><br>view guangzhou&#123;<br>match-clients &#123; gz; &#125;;<br>zone &quot;.&quot; IN &#123;<br>        type hint;<br>        file &quot;named.ca&quot;;<br>&#125;;<br>zone &quot;qiye.com&quot; IN &#123;<br>        type master;<br>        file &quot;qiye.com.zone.gz&quot;;<br>&#125;;<br>&#125;;<br><br>view shenzhen &#123;<br>match-clients &#123; sz; &#125;;<br>zone &quot;.&quot; IN &#123;<br>        type hint;<br>        file &quot;named.ca&quot;;<br>&#125;;<br>zone &quot;qiye.com&quot; IN &#123;<br>        type master;<br>        file &quot;qiye.com.zone.gz&quot;;<br>&#125;;<br>&#125;;<br><br>view other &#123;<br>match-clients &#123; any; &#125;;<br>zone &quot;.&quot; IN &#123;<br>        type hint;<br>        file &quot;named.ca&quot;;<br><br>&#125;;<br>zone &quot;qiye.com&quot; IN &#123;<br>        type master;<br>        file &quot;qiye.com.zone.ot&quot;;<br>&#125;;<br>&#125;;       <br><span class="hljs-meta">#</span><span class="bash">还有注释了下面这个</span><br><span class="hljs-meta">#</span><span class="bash">include <span class="hljs-string">&quot;/etc/named.rfc1912.zones&quot;</span>;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment">#把新增的文件补上</span><br><span class="hljs-built_in">cd</span> /var/named/<br><span class="hljs-built_in">cp</span> qiye.com.zone qiye.com.zone.gz<br><span class="hljs-built_in">cp</span> qiye.com.zone qioye.com.zone.sz <br><span class="hljs-built_in">cp</span> qiye.com.zone qiye.com.zone.ot <br>chgrp named qiye.com.zone.* <br>并且把每个复制后生成的文件，改一下解析域名解析<br>vim qiye.com.zone.gz<br>www A <span class="hljs-number">1.1</span>.<span class="hljs-number">1.1</span><br>vim qiye.com.zone.se<br>www A <span class="hljs-number">2.2</span>.<span class="hljs-number">2.2</span><br>vim qiye.com.zone.ot<br>www A <span class="hljs-number">3.3</span>.<span class="hljs-number">3.3</span><br></code></pre></td></tr></table></figure>
+
+<p>验证可能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">可以发现我的ip为192.168.241.129的时候，根据上述增加的acl规则，DNS服务器给我返回了other的3.3.3.3</span><br>[root@localhost named] ifconfig<br>eno16777736: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 192.168.241.129  netmask 255.255.255.0  broadcast 192.168.241.255<br><br>[root@localhost named]# host www.qiye.com<br>www.qiye.com has address 3.3.3.3    <br></code></pre></td></tr></table></figure>
+
+<p>ya✧da✧ze!</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AE%9E%E8%AE%AD/">实训</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/DNS/">DNS</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/28/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%B8%89%E5%A4%A9-Zabbix%E6%90%AD%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">实训day3-Zabbix</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/22/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%B8%80%E5%A4%A9-GRUB2-DHCP/">
+                        <span class="hidden-mobile">实训第一天</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

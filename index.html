@@ -182,6 +182,119 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/11/28/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%B8%89%E5%A4%A9-Zabbix%E6%90%AD%E5%BB%BA/" target="_self">
+          实训day3-Zabbix
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/28/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%B8%89%E5%A4%A9-Zabbix%E6%90%AD%E5%BB%BA/" target="_self">
+          
+          
+            
+          
+          实训第三天-Zabbix搭建1.环境Centos7环境123#运行环境[root@localhost ~]#  cat /etc/redhat-releaseCentOS Linux release 7.0.1406 (Core) 
+
+12345#永久关闭防火墙和SELinux[root@localhost ~]# systemctl disable firewalld.servicerm &#x
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-28 16:00" pubdate>
+              2021-11-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%AE%9E%E8%AE%AD/">实训</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/Zabbix/">Zabbix</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/24/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%BA%8C%E5%A4%A9-DNS%E7%9A%84%E6%90%AD%E5%BB%BA/" target="_self">
+          实训Day2-DNS
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/24/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%BA%8C%E5%A4%A9-DNS%E7%9A%84%E6%90%AD%E5%BB%BA/" target="_self">
+          
+          
+            
+          
+          实训第二天-DNS的搭建1. DNS安装与环境ps：跟陈总的文档完全不同
+12#安装bindyum install -y bind bind-utils
+
+关于环境：
+不先处理一些环境问题，后面处理起来，人要疯
+环境：必要两台centos7，复数其它任意网段主机（可有可无）
+首先是固定自己的ip（是啊，教室到宿舍，在到教室，网络一断，又得重新配）
+1234567891011121314151617
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-24 16:00" pubdate>
+              2021-11-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%AE%9E%E8%AE%AD/">实训</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/DNS/">DNS</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/11/22/%E5%AE%9E%E8%AE%AD%E7%AC%AC%E4%B8%80%E5%A4%A9-GRUB2-DHCP/" target="_self">
           实训第一天
         </a>
@@ -193,14 +306,16 @@
           
             
           
-          ﻿#                                     实训第一天
-GRUB2的使用1.忘记root密码怎么办？首先，我们先把root密码忘了，然后重启（reboot）
+          实训第一天GRUB2的使用1.忘记root密码怎么办？首先，我们先把root密码忘了，然后重启（reboot）
 
 在GRUB2启动屏显时，按下e键进入编辑模式
 
 然后我们定位到linux16开头的行，按下end键直接来这段命令的末尾，并增加 rd.break，ctrl+x一下
 
-进入emergency mode界面我有
+进入emergency mode界面我有个信息收集的习惯，先fuzz一下命令如下：
+123whoamilsmount
+
+
         </a>
       </p>
 
@@ -642,116 +757,6 @@ User-Agent：用户代理，一般用来区分不同的浏览器
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/PHP/">PHP</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" target="_self">
-          Oracle数据库练习2
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/24/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A02/" target="_self">
-          
-          
-            
-          
-          ﻿Oracle数据库练习2：
-主要是emp、dept这两张表emp表：dept表：
-
-
-1、列出至少有一个员工的所有部门多表查询，按部门编号（deptno）分组，再对每个组里人员编号（empno）进行大于等于1的过滤筛选
-12345SELECT d.deptno,COUNT(e.empno)FROM emp e,dept dWHERE e.deptno = d.deptno(+)HAVING CO
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-24 20:30" pubdate>
-              2021-09-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">Oracle</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/23/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A01/" target="_self">
-          Oracle数据库练习1
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/09/23/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%83%E4%B9%A01/" target="_self">
-          
-          
-            
-          
-          ﻿Oracle数据库练习1：
-最近开始学Oracle数据库，那自然就少不了训练，所有自己就从网上找了点题做
-
-
-1.请从表EMP中查找工种是职员CLERK或经理MANAGER的雇员姓名、工资,按工资由低到高向下排序。
-1234SELECT ename,salFROM empWHERE (job = &#x27;CLERK&#x27;) OR (job = &#x27;MANAGER&#x27;)O
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-23 00:50" pubdate>
-              2021-09-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Oracle/">Oracle</a>
             
           </div>
         
